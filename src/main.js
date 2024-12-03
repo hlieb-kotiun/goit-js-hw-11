@@ -29,7 +29,7 @@ function handletSubmit(event) {
   galleryN.innerHTML = '';
   loader.style.display = 'block';
   fetchData(
-    `https://pixabay.com/api/?key=47394436-b99c7e5d1cf7e77b7cf55ecb6&q=${userChoice}&image_type=photo&orientation=horizontal&safesearch=true&per_page=198`
+    `https://pixabay.com/api/?key=47394436-b99c7e5d1cf7e77b7cf55ecb6&q=${userChoice}&image_type=photo&orientation=horizontal&safesearch=true`
   )
     .then(data => {
       if (data.total === 0) {
@@ -43,7 +43,13 @@ function handletSubmit(event) {
       galleryN.insertAdjacentHTML('beforeend', createMarkup(data.hits));
       gallery.refresh();
     })
-    .catch(error => console.log(error))
+    .catch(error =>
+      iziToast.error({
+        title: '',
+        position: 'topRight',
+        message: 'Oooops! Somthing went wrong :/',
+      })
+    )
     .finally(() => (loader.style.display = 'none'));
 }
 

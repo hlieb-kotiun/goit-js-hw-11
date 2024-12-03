@@ -13,6 +13,3 @@ export function createMarkup(arr) {
     )
     .join('');
 }
-
-// <div class="content"></div>
-/* <span class="content"></span>; */
